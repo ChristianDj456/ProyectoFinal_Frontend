@@ -273,7 +273,7 @@ const Dashboard: React.FC = () => {
 
                     ) : (
                         <div className="loading">
-                            <span>Cargando gráficos del dashboard...</span>
+                            <span className="text-black">Cargando gráficos del dashboard...</span>
                             <div className="spinner"></div>
                         </div>
                     )}

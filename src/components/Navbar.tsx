@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 
 const Navbar: React.FC = () => {
     return (
-        <nav className="bg-gradient-to-r from-purple-500 to-purple-400 p-4 shadow-lg">
+        <nav className="bg-grafiteGray-400 p-4 shadow-lg">
             <div className="container mx-auto flex justify-between items-center">
 
                 <ul className="flex space-x-6">
                     <li>
                         <Link
                             to="/"
-                            className="text-white uppercase text-sm hover:text-yellow-400 transition duration-300"
+                            className="text-white uppercase text-sm hover:text-steelBlue-400 transition duration-300"
                         >
                             Dashboard
                         </Link>
@@ -18,7 +18,7 @@ const Navbar: React.FC = () => {
                     <li>
                         <Link
                             to="/candidate"
-                            className="text-white uppercase text-sm hover:text-yellow-400 transition duration-300"
+                            className="text-white uppercase text-sm hover:text-steelBlue-400 transition duration-300"
                         >
                             Candidato
                         </Link>
@@ -26,7 +26,7 @@ const Navbar: React.FC = () => {
                     <li>
                         <Link
                             to="/upload-csv"
-                            className="text-white uppercase text-sm hover:text-yellow-400 transition duration-300"
+                            className="text-white uppercase text-sm hover:text-steelBlue-400 transition duration-300"
                         >
                             Múltiples Candidatos
                         </Link>

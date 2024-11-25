@@ -74,20 +74,20 @@ const UploadCSV: React.FC = () => {
     };
 
     return (
-        <div className="flex flex-col items-center space-y-10 mt-10">
+        <div className="flex flex-col items-center space-y-10 mt-10 bg-pureWhite-100">
             <div className="mt-6">
-                <label className="block text-sm font-medium text-gray-700">Cargar archivo CSV:</label>
+                <label className="block text-sm font-medium text-black">Cargar archivo CSV:</label>
                 <input
                     type="file"
                     accept=".csv"
                     onChange={handleFileChange}
-                    className="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"
+                    className="mt-1 block w-full text-sm text-black file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-steelBlue-400 file:text-white hover:file:bg-indigo-700"
                 />
             </div>
 
             {/* Slider de número de filas */}
             <div className="mt-4 w-full max-w-lg">
-                <label className="block text-sm font-medium text-gray-700 mb-2">Número de filas a previsualizar:</label>
+                <label className="block text-sm font-medium text-black mb-2">Número de filas a previsualizar:</label>
                 <Slider
                     value={numRows}
                     onChange={handleSliderChange}
@@ -126,7 +126,7 @@ const UploadCSV: React.FC = () => {
                 </div>
             )}
 
-            <Button variant="contained" color="primary" onClick={handlePredict} className="mt-6">
+            <Button variant="contained" onClick={handlePredict} className="mt-6 bg-steelBlue-400 hover:bg-indigo-700">
                 Predecir
             </Button>
 
