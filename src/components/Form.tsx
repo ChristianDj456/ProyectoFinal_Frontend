@@ -5,6 +5,7 @@ import Result from "./Result";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Tooltip, IconButton } from "@mui/material";
 import SelectMultipleAppearance from "./Selector";
 import InfoIcon from "@mui/icons-material/Info";
+import { Box, CircularProgress, Modal } from "@mui/material";
 
 
 interface FormData extends CandidateData {
@@ -92,6 +93,7 @@ const Form: React.FC = () => {
     const [result, setResult] = useState<PredictionResult | null>(null);
     const [candidates, setCandidates] = useState<(FormData & { probability: number })[]>([]);
     const [highestProbabilityIndex, setHighestProbabilityIndex] = useState<number | null>(null);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
@@ -111,17 +113,23 @@ const Form: React.FC = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        const { ...candidateData } = formData;
-        const prediction = await predictCandidate(candidateData as CandidateData);
-        setResult(prediction);
+        setIsLoading(true);
+        try {
+            const prediction = await predictCandidate(formData as CandidateData);
+            setResult(prediction);
 
-        // Agrega el candidato con su probabilidad y nombre
-        const newCandidate = { ...formData, probability: prediction.probability };
-        const updatedCandidates = [...candidates, newCandidate];
-        setCandidates(updatedCandidates);
+            // Agrega el candidato con su probabilidad y nombre
+            const newCandidate = { ...formData, probability: prediction.probability };
+            const updatedCandidates = [...candidates, newCandidate];
+            setCandidates(updatedCandidates);
 
-        // Actualizar el índice del candidato con la probabilidad más alta
-        updateHighestProbabilityIndex(updatedCandidates);
+            // Actualizar el índice del candidato con la probabilidad más alta
+            updateHighestProbabilityIndex(updatedCandidates);
+        } catch (error) {
+            console.error("Error al realizar la predicción:", error);
+        } finally {
+            setIsLoading(false); // Ocultar el modal de carga
+        }
     };
 
     const updateHighestProbabilityIndex = (candidates: (FormData & { probability: number })[]) => {
@@ -136,6 +144,30 @@ const Form: React.FC = () => {
 
     return (
         <div className="min-h-screen flex flex-col items-center">
+
+            {/* Modal de carga */}
+            <Modal open={isLoading} aria-labelledby="loading-modal" aria-describedby="loading-modal-description">
+                <Box
+                    sx={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        flexDirection: 'column',
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        bgcolor: 'background.paper',
+                        boxShadow: 24,
+                        p: 4,
+                        borderRadius: 2,
+                    }}
+                >
+                    <CircularProgress />
+                    <p style={{ marginTop: '1rem', fontSize: '1rem', color: '#555' }}>Procesando predicción...</p>
+                </Box>
+            </Modal>
+
             {/* Formulario */}
             <div className="bg-pureWhite-100 rounded-lg p-6 w-full max-w-4xl mx-auto border-green-100 border-solid">
                 <h2 className="text-2xl font-bold text-center">Formulario de Selección</h2>

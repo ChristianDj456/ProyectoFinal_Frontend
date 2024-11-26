@@ -61,7 +61,7 @@ const Dashboard: React.FC = () => {
     const [activeTab, setActiveTab] = useState("general"); // Estado para cambiar entre las pestañas
 
     useEffect(() => {
-        axios.get<DashboardData>("http://localhost:8000/dashboard")
+        axios.get<DashboardData>("https://proyectofinal-backend-1.onrender.com/dashboard")
             .then(response => setData(response.data))
             .catch(error => console.error("Error al cargar los datos del dashboard:", error));
     }, []);
