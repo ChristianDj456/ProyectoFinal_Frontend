@@ -58,6 +58,10 @@ const UploadCSV: React.FC = () => {
 
             const combinedData = csvData.slice(0, numRows).map((candidate, index) => ({
                 ...candidate,
+                Name: candidate.Name || "",
+                Age: candidate.age || 0,
+                Gender: candidate.gender || 0,
+                Education: candidate.education || 0,
                 probability: predictionsResult[index]?.probability || 0,
             }));
             console.log("Combined data:", combinedData);

@@ -8,19 +8,9 @@ import InfoIcon from "@mui/icons-material/Info";
 
 
 interface FormData extends CandidateData {
-    name: string;
+    Name: string;
 }
 
-// const skillsOptions = [
-//     { value: 'javascript', label: 'JavaScript', logo: 'https://cdn-icons-png.flaticon.com/512/5968/5968292.png' },
-//     { value: 'python', label: 'Python', logo: 'https://cdn-icons-png.flaticon.com/512/5968/5968350.png' },
-//     { value: 'java', label: 'Java', logo: 'https://cdn-icons-png.flaticon.com/512/226/226777.png' },
-//     { value: 'c++', label: 'C++', logo: 'https://cdn-icons-png.flaticon.com/512/6132/6132222.png' },
-//     { value: 'ruby', label: 'Ruby', logo: 'https://cdn-icons-png.flaticon.com/512/919/919842.png' },
-//     { value: 'go', label: 'Go', logo: 'https://cdn-icons-png.flaticon.com/512/919/919833.png' },
-//     { value: 'php', label: 'PHP', logo: 'https://cdn-icons-png.flaticon.com/512/919/919830.png' },
-//     { value: 'swift', label: 'Swift', logo: 'https://cdn-icons-png.flaticon.com/512/919/919847.png' }
-// ];
 
 const skillsOptions = [
     { value: 'javascript', label: 'JavaScript', logo: 'https://cdn-icons-png.flaticon.com/512/5968/5968292.png' },
@@ -83,7 +73,7 @@ const skillsOptions = [
 
 const Form: React.FC = () => {
     const [formData, setFormData] = useState<FormData>({
-        name: "",
+        Name: "",
         age: 0,
         accessibility: 0,
         education: 0,
@@ -162,8 +152,8 @@ const Form: React.FC = () => {
                         </div>
                         <input
                             type="text"
-                            name="name"
-                            value={formData.name}
+                            name="Name"
+                            value={formData.Name}
                             onChange={handleChange}
                             required
                             className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -466,7 +456,7 @@ const Form: React.FC = () => {
                                         backgroundColor: index === highestProbabilityIndex ? "rgba(0, 128, 0, 0.1)" : "inherit",
                                     }}
                                 >
-                                    <TableCell>{candidate.name}</TableCell>
+                                    <TableCell>{candidate.Name}</TableCell>
                                     <TableCell>{candidate.age}</TableCell>
                                     <TableCell>{candidate.gender === 0 ? "Masculino" : candidate.gender === 1 ? "Femenino" : "No binario"}</TableCell>
                                     <TableCell>{candidate.education}</TableCell>

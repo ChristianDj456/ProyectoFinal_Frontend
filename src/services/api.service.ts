@@ -1,7 +1,7 @@
 import axios from "axios";
 import { CandidateData, PredictionResult } from "../types/candidate.type";
 
-const API_URL = "http://localhost:8000"; // Cambia esto según la URL del backend
+const API_URL = "https://proyectofinal-backend-1.onrender.com"; // Cambia esto según la URL del backend
 
 export const predictCandidate = async (data: CandidateData): Promise<PredictionResult> => {
     const response = await axios.post<PredictionResult>(`${API_URL}/predict`, data);

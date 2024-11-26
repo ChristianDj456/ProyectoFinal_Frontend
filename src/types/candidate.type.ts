@@ -1,4 +1,5 @@
 export interface CandidateData {
+    Name: string;
     age: number;
     accessibility: number;
     education: number;
